@@ -8,5 +8,9 @@ RbConfig::MAKEFILE_CONFIG['CXXFLAGS'] = ENV['CXXFLAGS'] if ENV['CXXFLAGS']
 dir_config("exiv2")
 have_library("exiv2")
 config = pkg_config('exiv2')
-$CPPFLAGS = [$CPPFLAGS, config[0]].join ' '
-create_makefile("exiv2/exiv2")
+if config
+  $CPPFLAGS = [$CPPFLAGS, config[0]].join ' '
+  create_makefile("exiv2/exiv2")
+else
+  abort 'exiv2 devel package is missing'
+end
