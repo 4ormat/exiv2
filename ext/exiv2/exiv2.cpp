@@ -20,8 +20,7 @@ static VALUE to_ruby_string(const std::string& string) {
   return str;
 }
 
-static VALUE map_to_hash(std::map< std::string,
-                               std::string > map) {
+static VALUE map_to_hash(Exiv2::LangAltValue::ValueType map) {
     VALUE hash = rb_hash_new();
     std::map<std::string, std::string>::iterator iterator;
     for (iterator = map.begin(); iterator != map.end(); ++iterator) {
